@@ -1,0 +1,33 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm install -g pnpm
+          pnpm install
+
+      - name: Editorconfig
+        run: pnpm editorconfig
+
+      - name: Run linters
+        run: pnpm lint
+
+      - name: Run tests
+        run: pnpm test

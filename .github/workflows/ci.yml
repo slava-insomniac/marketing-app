@@ -29,3 +29,30 @@ jobs:
 
       - name: Run tests
         run: pnpm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test-and-lint
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SSH client
+        run: sudo apt-get install -y openssh-client
+
+      - name: Digital ocean deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: |
+            cd ${{ secrets.DO_PROJECT_PATH }}
+            git pull origin main
+            pnpm install
+            pnpm -r docker:build
+            pnpm api docker:up
+            pnpm api db:push
+            pnpm web docker:up

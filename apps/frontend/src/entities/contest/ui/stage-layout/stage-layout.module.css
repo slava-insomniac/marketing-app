@@ -1,0 +1,54 @@
+.main {
+  display: flex;
+  padding: 0 20rem 20rem;
+}
+
+.heading {
+  margin-bottom: 32rem;
+}
+
+.text {
+  display: block;
+  margin-bottom: 49rem;
+}
+
+.content {
+  position: relative;
+  display: grid;
+  gap: 24rem;
+  grid-template-columns: 280rem 280rem;
+}
+
+.aside {
+  width: 28.3vw;
+}
+
+@media (--tablet) {
+  .aside {
+    position: fixed;
+    width: 100vw;
+
+    z-index: var(--app-zIndex-back);
+  }
+}
+
+@media (--mobile) {
+  .main {
+    padding: 20rem 40rem;
+  }
+
+  .text {
+    white-space: normal;
+    text-wrap: balance;
+  }
+  .content {
+    grid-template-columns: auto;
+  }
+
+  .aside {
+    position: fixed;
+    width: 100vw;
+
+    z-index: var(--app-zIndex-back);
+  }
+}

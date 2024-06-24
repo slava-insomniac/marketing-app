@@ -1,0 +1,7 @@
+@value mobile: 767px;
+@value tablet: 1024px;
+@value desktop: 1279px;
+
+@custom-media --mobile (max-width: mobile);
+@custom-media --tablet (min-width: mobile) and (max-width: tablet);
+@custom-media --desktop (min-width: tablet) and (max-width: desktop);

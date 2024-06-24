@@ -1,0 +1,83 @@
+.form {
+  --var-border-size: 1rem;
+
+  --gradient-start-color: rgba(255, 255, 255, 0.43);
+  --gradient-stop-color: rgba(255, 255, 255, 0);
+
+  position: relative;
+  z-index: var(--app-zIndex-base);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+  padding: 15rem 13rem 21rem;
+  min-width: 280rem;
+
+  border-radius: 16rem;
+
+  background: rgba(5, 12, 48, 0.4);
+  box-shadow: 0 0 90rem 0 rgba(0, 255, 209, 0.21);
+
+  opacity: 1;
+  transition-property: opacity, box-shadow;
+  transition-duration: var(--app-transition-duration), var(--app-transition-duration);
+}
+
+.form:has(button[type='submit']:hover) {
+  box-shadow: 0 0 90rem 0 rgba(0, 186, 228, 0.21);
+}
+
+.form:has(button[type='submit']:active) {
+  box-shadow: 0 0 90rem 0 rgba(0, 87, 255, 0.21);
+}
+
+.form::before {
+  content: '';
+  position: absolute;
+  z-index: var(--app-zIndex-back);
+  inset: 0;
+  padding: var(--var-border-size);
+  border-radius: inherit;
+  background: linear-gradient(154.93deg, var(--gradient-start-color) 12.78%, var(--gradient-stop-color) 87.86%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10rem;
+
+  color: var(--app-colors-text);
+  line-height: 130%;
+  letter-spacing: 0.59rem;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.disabled {
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.3;
+}
+
+.error {
+  display: block;
+  position: relative;
+  height: 26rem;
+  padding: 5rem 0;
+  line-height: 10rem;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

@@ -1,0 +1,39 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - marketing-app-network
+
+  backend:
+    container_name: backend
+    image: marketing-app-backend
+    command: pnpm start
+    build:
+      context: ../../
+      dockerfile: ./apps/backend/Dockerfile
+      target: backend
+    ports:
+      - '${PORT}:${PORT}'
+    depends_on:
+      - postgres
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - marketing-app-network
+
+networks:
+  marketing-app-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local

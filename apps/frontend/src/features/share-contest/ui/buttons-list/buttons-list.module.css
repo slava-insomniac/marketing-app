@@ -1,0 +1,10 @@
+.list {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (--mobile) {
+  .list {
+    justify-content: space-evenly;
+  }
+}

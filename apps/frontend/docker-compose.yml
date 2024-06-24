@@ -1,0 +1,16 @@
+services:
+  frontend:
+    container_name: frontend
+    image: marketing-app-frontend
+    build:
+      context: ../../
+      dockerfile: ./apps/frontend/Dockerfile
+      target: frontend
+    ports:
+      - 80:80
+    networks:
+      - marketing-app-network
+
+networks:
+  marketing-app-network:
+    driver: bridge

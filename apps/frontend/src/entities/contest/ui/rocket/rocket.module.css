@@ -1,0 +1,82 @@
+.background {
+  position: relative;
+  width: 100%;
+}
+
+.background::before {
+  content: '';
+
+  position: fixed;
+  z-index: var(--app-zIndex-back);
+
+  display: block;
+
+  width: 1326rem;
+  height: 1295rem;
+
+  background-image: url('/img/rocket-bg.webp');
+  background-repeat: no-repeat;
+  background-size: 1326rem 1295rem;
+
+  transform: translate(-285.5rem, -360.5rem);
+}
+
+.rocket {
+  position: fixed;
+  z-index: var(--app-zIndex-back);
+
+  width: 314rem;
+  height: 537rem;
+
+  user-select: none;
+  pointer-events: none;
+
+  transform: translate(164rem, 58rem);
+  animation-name: down;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+.bump-up {
+  animation: bump-up 520ms ease-in-out both;
+}
+
+@keyframes bump-up {
+  0% {
+    transform: translate(164rem, 58rem) scale(0.9, 1.1);
+  }
+  30% {
+    transform: translate(164rem, 58rem) scale(1, 1);
+  }
+  60% {
+    transform: translate(164rem, 58rem) scale(1.1, 0.9);
+  }
+  100% {
+    transform: translate(159rem, 25rem) scale(1, 1);
+  }
+}
+
+@media (--tablet) {
+  .background {
+    transform: translate(-40rem, -650rem);
+  }
+  .rocket {
+    display: none;
+  }
+}
+
+@media (--mobile) {
+  .background {
+    transform: translate(-40rem, -650rem);
+  }
+
+  .rocket {
+    display: none;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+  .wrapper::before {
+    background-image: url('/img/rocket-bg@2x.webp');
+  }
+}

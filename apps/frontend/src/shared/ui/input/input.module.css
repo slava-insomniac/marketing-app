@@ -1,0 +1,61 @@
+.input {
+  position: relative;
+  z-index: var(--app-zIndex-base);
+
+  border-radius: 6rem;
+  background: rgb(5, 18, 55);
+}
+
+.input::after {
+  content: '';
+
+  position: absolute;
+  z-index: var(--app-zIndex-back);
+
+  padding: 1rem;
+
+  inset: 0;
+  border-radius: inherit;
+
+  background-image: linear-gradient(to right, rgba(98, 255, 130, 1), rgba(41, 186, 71, 1));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  transition: background-image var(--app-transition-duration);
+}
+
+.input > input {
+  width: 100%;
+  height: 50rem;
+  padding: 16rem 13rem;
+
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  color: var(--app-colors-text);
+  font-size: 13rem;
+  letter-spacing: 0.9rem;
+  line-height: 130%;
+}
+
+.input > input:-webkit-autofill,
+.input > input:-webkit-autofill:focus {
+  transition:
+    background-color 0s 600000s,
+    color 0s 600000s !important; /* remove autocomplete white background */
+}
+
+.input > input::placeholder {
+  color: var(--app-colors-text);
+}
+
+.error::after {
+  background-image: linear-gradient(to right, rgba(255, 30, 30, 0.99), rgba(199, 151, 28, 1));
+}

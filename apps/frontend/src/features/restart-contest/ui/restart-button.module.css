@@ -1,0 +1,18 @@
+.button {
+  width: 277rem;
+  margin-top: 17rem;
+}
+
+@media (--tablet) {
+  .button {
+    width: 100%;
+    margin-top: 17rem;
+  }
+}
+
+@media (--mobile) {
+  .button {
+    width: 100%;
+    margin-top: 17rem;
+  }
+}

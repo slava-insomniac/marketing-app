@@ -1,0 +1,28 @@
+.heading {
+  display: inline-block;
+  margin: 0;
+  white-space: pre-wrap;
+  text-transform: uppercase;
+
+  font-size: var(--app-font-size-xl);
+  font-weight: var(--app-font-weight-bold);
+
+  line-height: 65.5rem;
+
+  background: conic-gradient(
+    from 103deg at 45% 70%,
+    rgba(43, 101, 251, 1) 35%,
+    rgba(40, 216, 255, 1) 44%,
+    rgba(133, 255, 182, 1) 94%,
+    rgba(23, 194, 19, 1) 100%
+  );
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+.heading::first-line {
+  line-height: normal;
+  background: var(--app-colors-text);
+  background-clip: text;
+}

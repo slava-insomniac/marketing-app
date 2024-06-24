@@ -1,0 +1,51 @@
+.layout {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.inner {
+  position: relative;
+  margin: auto;
+  width: fit-content;
+  max-width: calc(var(--app-max-width) * 1rem);
+  height: 100%;
+}
+
+.inner::before,
+.inner::after {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: block;
+
+  pointer-events: none;
+  overflow: hidden;
+
+  filter: blur(200rem);
+}
+
+.inner::before {
+  top: -262rem;
+  left: -328rem;
+  width: 643rem;
+  height: 636rem;
+  background: radial-gradient(ellipse closest-side at center, rgba(0, 99, 249, 0.2) 100%, rgba(0, 0, 0, 0) 100%);
+  background-repeat: no-repeat;
+}
+
+.inner::after {
+  top: 498rem;
+  left: -370rem;
+  width: 683rem;
+  height: 674rem;
+  background: radial-gradient(ellipse closest-side at center, rgba(0, 9, 22, 1) 100%, rgba(0, 0, 0, 0) 100%);
+  background-repeat: no-repeat;
+  background-size: 683rem 674rem;
+
+  z-index: var(--app-zIndex-back);
+}

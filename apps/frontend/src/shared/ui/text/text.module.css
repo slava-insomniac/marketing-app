@@ -1,0 +1,43 @@
+.element {
+  white-space: pre-wrap;
+}
+
+/* colors */
+.text {
+  color: var(--app-colors-text);
+}
+
+.error {
+  color: var(--app-colors-error);
+}
+
+/* sizes */
+.xl {
+  font-size: var(--app-font-size-xl);
+}
+
+.lg {
+  font-size: var(--app-font-size-lg);
+  line-height: 30rem;
+}
+
+.md {
+  font-size: var(--app-font-size-md);
+}
+
+.sm {
+  font-size: var(--app-font-size-sm);
+}
+
+/* weights */
+.normal {
+  font-weight: var(--app-font-weight-normal);
+}
+
+.bold {
+  font-weight: var(--app-font-weight-bold);
+}
+
+.extrabold {
+  font-weight: var(--app-font-weight-extrabold);
+}

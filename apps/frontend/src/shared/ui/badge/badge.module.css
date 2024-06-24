@@ -1,0 +1,51 @@
+.badge {
+  position: relative;
+  z-index: var(--app-zIndex-base);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22rem;
+  height: 20rem;
+
+  color: var(--app-colors-text);
+  font-size: var(--app-font-size-sm);
+  font-weight: var(--app-font-weight-bold);
+
+  line-height: 0;
+
+  border-radius: 4rem;
+
+  background: rgba(255, 255, 255, 0.4);
+  text-shadow: 0px 1px 2px rgba(2, 0, 83, 0.21);
+}
+
+.badge::before {
+  content: '';
+  padding: 1rem;
+
+  position: absolute;
+  z-index: var(--app-zIndex-back);
+  inset: 0;
+
+  border-radius: inherit;
+
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.43), rgba(255, 255, 255, 0));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.success {
+  background: linear-gradient(142.25deg, #2fef57 20.57%, #2bba4c 48.47%, #20948c 78.79%);
+}
+
+.disabled::before {
+  padding: 0;
+}

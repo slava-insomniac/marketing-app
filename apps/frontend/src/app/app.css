@@ -1,0 +1,83 @@
+:root {
+  --app-scale: 1;
+  --app-max-width: 1440; /* figma layout width */
+  --app-rem-unit: calc(calc(var(--app-max-width) * 1px) / calc(var(--app-max-width) / var(--app-scale)));
+
+  --app-font-weight-normal: 400;
+  --app-font-weight-bold: 700;
+  --app-font-weight-extrabold: 900;
+
+  --app-font-size-sm: 9rem;
+  --app-font-size-md: 13rem;
+  --app-font-size-lg: 20rem;
+  --app-font-size-xl: 40rem;
+
+  --app-zIndex-back: -1;
+  --app-zIndex-base: 0;
+
+  --app-colors-text: rgb(255, 255, 255);
+  --app-colors-background: rgb(0, 11, 35);
+  --app-colors-error: rgb(245, 71, 89);
+
+  --app-transition-duration: 150ms;
+}
+
+/* inter-latin-wght-normal */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/inter/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* inter-cyrillic-wght-normal */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/inter/inter-cyrillic-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+html {
+  font-family:
+    Inter,
+    Inter Variable,
+    sans-serif;
+  font-size: var(--app-rem-unit);
+  letter-spacing: 0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  color: var(--app-colors-text);
+  font-size: var(--app-font-size-md);
+  background-color: var(--app-colors-background);
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+}

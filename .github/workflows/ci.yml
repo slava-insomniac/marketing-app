@@ -42,7 +42,7 @@ jobs:
       - name: Install SSH client
         run: sudo apt-get install -y openssh-client
 
-      - name: Digital ocean deploy
+      - name: Pull changes and stop containers
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DO_HOST }}
@@ -52,7 +52,44 @@ jobs:
             cd ${{ secrets.DO_PROJECT_PATH }}
             git pull origin main
             pnpm install
-            pnpm -r docker:build
+            pnpm -r docker:down
+
+      - name: Build backend image
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: |
+            cd ${{ secrets.DO_PROJECT_PATH }}/apps/backend
+            pnpm docker:build
+
+      - name: Build frontend image
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: |
+            cd ${{ secrets.DO_PROJECT_PATH }}/apps/frontend
+            pnpm docker:build
+
+      - name: Start containers
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: |
+            cd ${{ secrets.DO_PROJECT_PATH }}
             pnpm api docker:up
             pnpm api db:push
             pnpm web docker:up
+
+      - name: Clear previous build data
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: docker system prune -f

@@ -10,8 +10,6 @@ services:
       - '${POSTGRES_PORT}:${POSTGRES_PORT}'
     volumes:
       - db-data:/var/lib/postgresql/data
-    networks:
-      - marketing-app-network
 
   backend:
     container_name: backend
@@ -27,12 +25,6 @@ services:
       - postgres
     volumes:
       - .:/usr/src/app
-    networks:
-      - marketing-app-network
-
-networks:
-  marketing-app-network:
-    driver: bridge
 
 volumes:
   db-data:

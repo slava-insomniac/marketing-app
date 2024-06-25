@@ -52,7 +52,7 @@ jobs:
             cd ${{ secrets.DO_PROJECT_PATH }}
             git pull origin main
             pnpm install --ignore-scripts
-            pnpm -r docker:down
+            docker stop $(docker ps -a -q)
 
       - name: Build backend image
         uses: appleboy/ssh-action@master

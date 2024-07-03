@@ -76,7 +76,7 @@
 }
 
 @media (-webkit-min-device-pixel-ratio: 2) {
-  .wrapper::before {
+  .background::before {
     background-image: url('/img/rocket-bg@2x.webp');
   }
 }

@@ -12,5 +12,5 @@ services:
       - db-data-dev:/var/lib/postgresql/data
 
 volumes:
-  db-data:
+  db-data-dev:
     driver: local

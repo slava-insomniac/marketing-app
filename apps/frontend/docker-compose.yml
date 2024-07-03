@@ -8,9 +8,3 @@ services:
       target: frontend
     ports:
       - 80:80
-    networks:
-      - marketing-app-network
-
-networks:
-  marketing-app-network:
-    driver: bridge

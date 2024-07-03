@@ -9,7 +9,7 @@ RUN apt-get update -y && apt-get install -y openssl
 FROM base AS build
 COPY . /usr/src/app
 WORKDIR /usr/src/app
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --ignore-scripts
 RUN pnpm api build
 RUN pnpm api deploy --prod /backend
 

@@ -51,8 +51,8 @@ jobs:
           script: |
             cd ${{ secrets.DO_PROJECT_PATH }}
             git pull origin main
-            pnpm install
-            pnpm -r docker:down
+            pnpm docker:down
+            pnpm install --ignore-scripts
 
       - name: Build backend image
         uses: appleboy/ssh-action@master
@@ -61,8 +61,8 @@ jobs:
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
-            cd ${{ secrets.DO_PROJECT_PATH }}/apps/backend
-            pnpm docker:build
+            cd ${{ secrets.DO_PROJECT_PATH }}
+            pnpm api docker:build
 
       - name: Build frontend image
         uses: appleboy/ssh-action@master
@@ -71,8 +71,8 @@ jobs:
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
-            cd ${{ secrets.DO_PROJECT_PATH }}/apps/frontend
-            pnpm docker:build
+            cd ${{ secrets.DO_PROJECT_PATH }}
+            pnpm web docker:build
 
       - name: Start containers
         uses: appleboy/ssh-action@master
@@ -85,11 +85,3 @@ jobs:
             pnpm api docker:up
             pnpm api db:push
             pnpm web docker:up
-
-      - name: Clear previous build data
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.DO_HOST }}
-          username: ${{ secrets.DO_USER }}
-          key: ${{ secrets.DO_SSH_KEY }}
-          script: docker system prune -f

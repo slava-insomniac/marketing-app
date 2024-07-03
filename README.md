@@ -103,6 +103,14 @@ Start container with nginx.
 pnpm web docker:up
 ```
 
+## Misc
+
+Stop all containers.
+
+```sh
+pnpm docker:down
+```
+
 ## Requirements
 
 - pnpm

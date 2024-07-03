@@ -9,7 +9,7 @@
     "test": "pnpm -r test",
     "editorconfig": "editorconfig-checker --exclude '.git|node_modules|.husky|build|dist'",
     "prepare": "husky install",
-    "docker:down": "docker-compose -p marketing-app down"
+    "docker:down": "docker stop $(docker ps -a -q)"
   },
   "engines": {
     "node": ">=18.0.0"
